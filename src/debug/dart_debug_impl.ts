@@ -1041,6 +1041,8 @@ export class DartDebugSession extends DebugSession {
 
 		// For PausePostRequest we need to re-send all breakpoints; this happens after a flutter restart
 		if (kind === "PausePostRequest") {
+			// DEBUG.... We may be sending the BPs too earlier, but can we wait here????
+			await new Promise((resolve) => setTimeout(resolve, 10000));
 			try {
 				await this.threadManager.resetBreakpoints();
 			} catch (e) {

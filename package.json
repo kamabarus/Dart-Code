@@ -1221,7 +1221,7 @@
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^5.2.5",
-		"@types/node": "^8.10.37",
+		"@types/node": "^10.12.21",
 		"@types/semver": "^5.5.0",
 		"@types/sinon": "^5.0.5",
 		"@types/ws": "^6.0.1",
@@ -1234,7 +1234,7 @@
 		"supports-color": "^6.1.0",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
+		"vscode": "^1.1.29",
 		"vscode-debugadapter-testsupport": "^1.33.0"
 	}
 }

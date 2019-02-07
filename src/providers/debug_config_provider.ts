@@ -17,7 +17,7 @@ import { FlutterCapabilities } from "../flutter/capabilities";
 import { FlutterDeviceManager } from "../flutter/device_manager";
 import { locateBestProjectRoot } from "../project";
 import { dartVMPath, flutterPath, pubPath, pubSnapshotPath } from "../sdk/utils";
-import { fsPath, isDartFile, isFlutterProjectFolder, isFlutterWorkspaceFolder, isInsideFolderNamed, isTestFile, isTestFileOrFolder, checkProjectSupportsPubRunTest, ProjectType, Sdks } from "../utils";
+import { checkProjectSupportsPubRunTest, fsPath, isDartFile, isFlutterProjectFolder, isFlutterWorkspaceFolder, isInsideFolderNamed, isTestFile, isTestFileOrFolder, ProjectType, Sdks } from "../utils";
 import { log, logError, logWarn } from "../utils/log";
 import { TestResultsProvider } from "../views/test_view";
 
@@ -243,10 +243,19 @@ export class DebugConfigProvider implements DebugConfigurationProvider {
 
 		// Start port listener on launch of first debug session.
 		const debugServer = this.getDebugServer(debugType, debugConfig.debugServer);
+		const serverAddress = debugServer.address();
+
+		// Updated node bindings say address can be a string (used for pipes) but
+		// this should never be the case here. This check is to keep the types happy.
+		if (typeof serverAddress === "string") {
+			log("Debug server does not have a valid address");
+			window.showErrorMessage("Debug server does not have a valid address");
+			return undefined;
+		}
 
 		// Make VS Code connect to debug server instead of launching debug adapter.
 		// TODO: Why do we need this cast? The node-mock-debug does not?
-		(debugConfig as any).debugServer = debugServer.address().port;
+		(debugConfig as any).debugServer = serverAddress.port;
 
 		this.analytics.logDebuggerStart(folder && folder.uri);
 		if (debugType === DebuggerType.FlutterTest || debugType === DebuggerType.PubTest) {

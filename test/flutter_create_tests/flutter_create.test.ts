@@ -7,7 +7,7 @@ import { waitForResult } from "../helpers";
 
 describe("flutter", () => {
 	it("created a basic default project", async () => {
-		const basicProjectFolder = fsPath(vs.workspace.workspaceFolders[0].uri);
+		const basicProjectFolder = fsPath(vs.workspace.workspaceFolders![0].uri);
 		const expectedString = "title: 'Flutter Demo'";
 		const mainFile = path.join(basicProjectFolder, "lib", "main.dart");
 		// Creating the sample may be a little slow, so allow up to 60 seconds for it.
@@ -23,7 +23,7 @@ describe("flutter", () => {
 			assert.fail(`Did not find "${expectedString}'" in the sample file:\n\n${contents}`);
 	});
 	it("created a sample project", async () => {
-		const sampleProjectFolder = fsPath(vs.workspace.workspaceFolders[1].uri);
+		const sampleProjectFolder = fsPath(vs.workspace.workspaceFolders![1].uri);
 		const expectedString = "title: 'Flutter Code Sample for material.IconButton'";
 		const mainFile = path.join(sampleProjectFolder, "lib", "main.dart");
 		// Creating the sample may be a little slow, so allow up to 60 seconds for it.

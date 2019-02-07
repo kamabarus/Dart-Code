@@ -195,10 +195,10 @@ export interface FlutterLaunchRequestArguments extends DartLaunchRequestArgument
 	deviceId: string;
 	forceFlutterVerboseMode?: boolean;
 	flutterTrackWidgetCreation: boolean;
-	flutterPath: string;
+	flutterPath?: string;
 	flutterMode?: "debug" | "profile" | "release";
-	flutterRunLogFile: string;
-	flutterTestLogFile: string;
+	flutterRunLogFile?: string;
+	flutterTestLogFile?: string;
 }
 
 export interface DartAttachRequestArguments extends DebugProtocol.AttachRequestArguments {

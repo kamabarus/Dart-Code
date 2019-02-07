@@ -478,7 +478,7 @@
 				},
 				{
 					"command": "dart.openDevTools",
-					"when": "config.dart.previewDartDevTools && inDebugMode"
+					"when": "inDebugMode"
 				},
 				{
 					"command": "flutter.selectDevice",
@@ -966,12 +966,6 @@
 					"type": "boolean",
 					"default": false,
 					"description": "Whether to show quick fixes for ignoring hints and lints.",
-					"scope": "window"
-				},
-				"dart.previewDartDevTools": {
-					"type": "boolean",
-					"default": false,
-					"description": "Whether to enable the Dart DevTools preview.",
 					"scope": "window"
 				},
 				"dart.previewBuildRunnerTasks": {
